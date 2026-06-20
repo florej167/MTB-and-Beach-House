@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTB & Beach House - Short-Term Rental</title>
+    <style>
+        /* Base Styles & Cabo Rojo Lighthouse Background */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222222;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://i.postimg.cc/pr8cm7HT/foto-del-faro.avif');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #1a252f;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            color: #FF5A5F; /* Airbnb Style Color */
+            font-size: 2.4rem;
+        }
+
+        header p {
+            margin: 6px 0 0 0;
+            color: #484848;
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        /* Guest Favorite Badge */
+        .badge-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .guest-favorite-badge {
+            background: linear-gradient(to right, #E61E4D, #D70466);
+            color: white;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(230, 30, 77, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Gallery Box */
+        .gallery-box {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 35px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: repeat(2, 200px);
+            gap: 12px;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            filter: brightness(0.95);
+        }
+
+        .main-img {
+            grid-row: span 2;
+            height: 412px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(5, 250px);
+            }
+            .main-img {
+                grid-row: span 1;
+                height: 250px;
+            }
+        }
+
+        /* Grid Layout for Review & Booking Information */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Review Card Style */
+        .review-card {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            text-align: left;
+        }
+
+        .review-header {
+            margin-bottom: 15px;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .reviewer-meta {
+            color: #717171;
+            font-size: 0.9rem;
+            margin: 3px 0;
+        }
+
+        .stars {
+            color: #FFB400; /* Star Gold */
+            font-size: 1.2rem;
+            margin: 8px 0;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #222222;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Booking Card Style */
+        .booking-card {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .booking-card h2 {
+            margin-top: 0;
+            color: #222222;
+            font-size: 1.8rem;
+        }
+
+        .booking-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #484848;
+            margin-bottom: 25px;
+        }
+
+        /* Call to Action Button */
+        .btn-airbnb {
+            display: inline-block;
+            background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+            color: #ffffff;
+            padding: 16px 40px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(230, 30, 77, 0.4);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-airbnb:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 30, 77, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Header -->
+    <header>
+        <h1>MTB & Beach House</h1>
+        <p>Your perfect getaway in Cabo Rojo, nestled between the mountains and the sea</p>
+        <!-- Guest Favorite Badge element -->
+        <div class="badge-container">
+            <span class="guest-favorite-badge">★ Guest Favorite</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Image Gallery Box -->
+        <div class="gallery-box">
+            <section class="gallery-container">
+                <!-- Main Photo: House Side View -->
+                <img class="gallery-item main-img" src="https://i.postimg.cc/JzTxzmk5/casa-de-lado.avif" alt="MTB & Beach House - Exterior View">
+                
+                <!-- Photo 2: Living Room -->
+                <img class="gallery-item" src="https://i.postimg.cc/4nkvjNqr/foto-de-la-sala.avif" alt="MTB & Beach House - Living Room">
+                
+                <!-- Photo 3: MTB Group -->
+                <img class="gallery-item" src="https://i.postimg.cc/d17wxq82/corrillo-MTB.avif" alt="MTB & Beach House - MTB Group">
+                
+                <!-- Photo 4: Sunset View -->
+                <img class="gallery-item" src="https://i.postimg.cc/pdXSsqfH/foto-del-atardecer.avif" alt="MTB & Beach House - Breathtaking Sunset">
+
+                <!-- Photo 5: Beach View -->
+                <img class="gallery-item" src="https://i.postimg.cc/kgpnF6Sn/foto-de-la-playa.avif" alt="MTB & Beach House - Nearby Beach">
+            </section>
+        </div>
+
+        <!-- Review & Booking Cards Row Layout -->
+        <div class="content-grid">
+            
+            <!-- Real Guest Review Card -->
+            <section class="review-card">
+                <div class="review-header">
+                    <p class="reviewer-name">Penelope</p>
+                    <p class="reviewer-meta">New Haven, Connecticut · February 2026 · Stayed with kids</p>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="review-text">
+                    "Our favorite stay in Puerto Rico! The house was beautiful, spotless, and felt like a home away from home. The location was perfect, close to Boquerón Beach, Combate Beach, and La Parguera. We didn’t want to leave and would 100% stay here again!"
+                </p>
+            </section>
+
+            <!-- Booking Card -->
+            <section class="booking-card">
+                <h2>Secure & Direct Booking</h2>
+                <p>Enjoy an unforgettable vacation exploring premium MTB trails and unwinding on pristine beaches. We manage live availability, competitive rates, and secure bookings exclusively through Airbnb.</p>
+                
+                <!-- Direct Link to your Airbnb Listing -->
+                <a href="https://airbnb.com/h/mtbandbeachhouse" target="_blank" class="btn-airbnb">
+                    View Availability on Airbnb
+                </a>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
